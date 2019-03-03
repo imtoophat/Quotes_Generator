@@ -1,25 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import QuoteButton from "./components/QuoteButton";
+import QuotesTextArea from "./components/QuotesTextArea";
+
+import Sentencer from "sentencer";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      structure: "{{adjective}} {{noun}}, {{adjective}} {{noun}}",
+      quote: ""
+    };
+  }
+
+  getNewQuote = () => {
+    const sentence = Sentencer.make(this.state.structure);
+
+    this.setState({ quote: sentence });
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div>Quote Generator for your Un-Imaginative Ass</div>
+        <br />
+        <QuoteButton getNewQuote={this.getNewQuote} />
+        <QuotesTextArea quote={this.state.quote} />
       </div>
     );
   }
