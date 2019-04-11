@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      structure: "Quotes",
+      structure: "",
       quote: ""
     };
   }
@@ -37,6 +37,7 @@ class App extends Component {
           <QuotesTextArea quote={this.state.quote} />
           <br />
           <CustomQuoteInput
+            className="CustomQuoteInput"
             currStructure={this.state.structure}
             changeSentenceStructure={this.changeSentenceStructure.bind(this)}
           />
