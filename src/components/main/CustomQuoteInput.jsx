@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AdjectiveButton from "./CustomInputs/AdjectiveButton";
+import NounButton from "./CustomInputs/NounButton";
 
 class CustomQuoteInput extends Component {
   changeSentenceStructure = e => {
@@ -14,6 +15,13 @@ class CustomQuoteInput extends Component {
     this.setState({ currStructure: newStructure });
     this.props.changeSentenceStructure(newStructure);
   };
+
+  addNoun = () => {
+    let newStructure = this.props.currStructure;
+    newStructure += ` {{noun}}`;
+    this.setState({ currStructure: newStructure });
+    this.props.changeSentenceStructure(newStructure);
+  };
   render() {
     return (
       <div>
@@ -25,6 +33,8 @@ class CustomQuoteInput extends Component {
             onChange={this.changeSentenceStructure.bind(this)}
           />
         </label>
+
+        <NounButton addNoun={this.addNoun.bind(this)} />
         <AdjectiveButton addAdjective={this.addAdjective.bind(this)} />
       </div>
     );
